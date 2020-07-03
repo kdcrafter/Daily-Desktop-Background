@@ -1,6 +1,9 @@
 # Other
 keys.py
 *.jpg
+*.jepg
+*.png
+*.bmp
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

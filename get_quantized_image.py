@@ -10,6 +10,8 @@ from keys import *
 from config import *
 
 def get_image():
+    # Get image url response
+    print('Getting image url response')
     image_number = randint(1, MAX_IMAGES)
     response = requests.get('https://api.unsplash.com/search/photos/' +
         '?client_id=' + UNSPLASH_ACCESS_KEY + 
@@ -21,15 +23,16 @@ def get_image():
     if response.status_code != 200:
         print('Status Code:', response.status_code)
         print(response.json()['errors'])
-        return
+        quit()
     elif response.json() == {}:
         print('Status Code:', 500)
         print(['Internal Server Error'])
-        return
+        quit()
 
+    # Get image response
+    print('Getting image response')
     image_url = response.json()['results'][0]['urls']['raw']
-    image_url += ('&q=' + str(COMPRESSION_QUALITY) +
-        '&fm=jpg' +
+    image_url += ('&fm=png' +
         '&w=' + str(WIDTH) +
         '&h=' + str(HEIGHT) +
         '&fit=min')
@@ -52,13 +55,15 @@ def color_quantize_image(image):
     print('Apply cluster colors')
     image = np.apply_along_axis(lambda x: clusters[kmeans.predict([x])[0]], 2, image)
     print(image)
-    image = Image.fromarray(image) # TIDO: ensure that image is actually made up of NUMBER_COLORS colors
+    image = Image.fromarray(image)
 
     return image
 
 if __name__ == '__main__':
-    #image = get_image()
-    #image.save('temp.jpg')
-    image = Image.open('temp.jpg')
-    image = color_quantize_image(image)
-    image.save('color_quantized_temp.jpg')
+    image = get_image()
+    image.save('background.png')
+    #image = Image.open('background.png')
+
+    image = image.quantize(NUMBER_COLORS).convert('RGB')
+    # image = color_quantize_image(image)
+    image.save('background_quantized.png')
