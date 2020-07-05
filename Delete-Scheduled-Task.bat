@@ -1,0 +1,1 @@
+Schtasks /Delete /TN "MyTasks\Daily-Desktop-Background"
