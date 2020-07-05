@@ -12,7 +12,7 @@ One way to do a periodic action in Windows 10 is to create a daily task using th
 ```
 Create-Scheduled-Task.bat
 ```
-Now, if you open Task Scheduler and view the MyTasks folder under Task Scheduler Library, you should see a Daily-Desktop-Background task.
+Now, if you open Task Scheduler and view the MyTasks folder under Task Scheduler Library, you should see a task called Daily-Desktop-Background.
 
 If you want to get rid of the task or you moved this project's directory to another directory (the project won't work if that happens), just run Delete-Scheduled-Task.bat.
 
@@ -20,7 +20,7 @@ In order for this project to get a new desktop background everyday, it uses the 
 ```
 UNSPLASH_ACCESS_KEY = '<your key here>'
 ```
-If a good number people find this project useful, I can add a bit more to the project so that you can use my secret key while still keeping it confidential. Though, I don't know how to do this yet.
+If a good number of people find this project useful, I can add a bit more to the project so that you can use my secret key while still keeping it confidential. Though, I don't know how to do this yet.
 
 That's it! You now have a daily refresing Windows 10 color quantized background.
 
